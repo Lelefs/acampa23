@@ -7,5 +7,13 @@ module.exports = defineConfig({
     short_name: 'A23 - EU SOU',
     theme_color: '#000',
     background_color: '#000',
+    msTileColor: '#fff',
+    manifestOptions: {
+      name: 'MAG SBC - Acampa 2023',
+      short_name: 'A23 - EU SOU',
+      theme_color: '#000',
+      background_color: '#000',
+      msTileColor: '#fff',
+    },
   },
 });
