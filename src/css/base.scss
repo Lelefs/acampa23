@@ -9,5 +9,54 @@ body {
 }
 
 .gap-16 {
-  gap: 16px;
+  gap: 1rem;
+}
+
+.gap-32 {
+  gap: 2rem;
+}
+
+.group-title {
+  position: relative;
+  color: #170d3f;
+  font-size: 20px;
+  line-height: 105%;
+  letter-spacing: 0.1em;
+  margin-bottom: 28px;
+  font-weight: 400;
+
+  @media only screen and (min-width: 720px) {
+    &::before {
+      content: '';
+      position: absolute;
+      top: -1rem;
+      width: 30px;
+      height: 2px;
+      background-color: #170d3f;
+      opacity: 0.5;
+    }
+  }
+}
+
+.group-subtitle {
+  font-size: 32px;
+  line-height: 125%;
+  letter-spacing: 0.005em;
+  color: #121212;
+
+  &.font-28 {
+    font-size: 28px;
+  }
+}
+
+@media only screen and (max-width: 720px) {
+  .group-title {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    margin-bottom: 4px;
+  }
+
+  .group-subtitle {
+    font-size: 20px;
+  }
 }

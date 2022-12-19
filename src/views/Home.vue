@@ -1,138 +1,145 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col cols="12" class="d-flex justify-space-between align-center">
-        <div class="d-flex align-center">
-          <v-icon large class="mr-1">mdi-calendar-range-outline</v-icon>
-          <span class="title"> {{ today }} </span>
-        </div>
+  <div class="home-acamp mx-auto" :class="windowWidth > 720 ? 'desk-view' : 'mobile-view'">
+    <v-img
+      width="100%"
+      :min-height="windowWidth > 720 ? 600 : 330"
+      :max-width="windowWidth > 720 ? 1440 : 720"
+      :src="`img/banner-${windowWidth > 720 ? 'desk' : 'mobile'}.png`"
+      alt="Banner"
+      class="img-banner"
+    ></v-img>
 
-        <div class="d-flex align-center">
-          <v-icon large class="mr-1">mdi-clock-outline</v-icon>
-          <span class="title"> {{ hours }} </span>
-        </div>
-      </v-col>
-    </v-row>
+    <main class="d-flex flex-column">
+      <div class="title-page d-flex flex-column">
+        <span class="text-info text-1 mb-4">ACMP'23</span>
 
-    <v-row>
-      <v-col cols="12">
-        <v-divider></v-divider>
-      </v-col>
-    </v-row>
+        <h1 class="text-info text-2 font-weight-bold mb-3">Faça sua inscrição!!</h1>
 
-    <v-row>
-      <v-col cols="12">
-        <main class="white d-flex flex-column pa-4 gap-16 rounded-lg rounded-b-0">
-          <h1 class="text-center">AGORA</h1>
-          <v-card color="grey lighten-4" elevation="5">
-            <div class="d-flex flex-no-wrap">
-              <div class="d-flex flex-column justify-center align-center">
-                <v-card-title class="text-h5" v-text="currentEvent.hourStart"></v-card-title>
-                <v-card-subtitle v-text="currentEvent.hourEnd"></v-card-subtitle>
-              </div>
+        <span class="text-info text-3" :class="windowWidth > 720 ? 'mb-10' : 'mb-5'"
+          >Valores: R$750 (Carro) - R$800 (Ônibus) Parcelamento em até 4x</span
+        >
 
-              <div class="d-flex flex-column justify-center align-center flex-grow-1">
-                <v-card-text class="card-text-event">
-                  <div class="d-flex flex-column mx-auto">
-                    <h3>{{ currentEvent.title }}</h3>
+        <v-btn
+          rounded
+          style="color: #fff"
+          x-large
+          color="#FF2E20"
+          width="fit-content"
+          class="font-weight-bold"
+          :class="windowWidth > 720 ? '' : 'mx-auto'"
+          href="https://forms.gle/fqiceMwqqFSo8seYA"
+          target="_blank"
+          >Fazer inscrição</v-btn
+        >
+      </div>
 
-                    <div class="d-flex align-end mt-2" v-if="currentEvent.location">
-                      <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
-                      <span class="info-event-text"> {{ currentEvent.location }} </span>
-                    </div>
+      <VideoComponent />
 
-                    <div class="d-flex align-end mt-2" v-if="currentEvent.responsible">
-                      <v-icon class="mr-1">mdi-account-outline</v-icon>
-                      <span class="info-event-text"> {{ currentEvent.responsible }} </span>
-                    </div>
-                  </div>
-                </v-card-text>
-              </div>
-
-              <div class="d-none d-sm-flex flex-column justify-center align-center pa-3">
-                <h2>{{ currentEvent.period }}</h2>
-              </div>
-            </div>
-          </v-card>
-
-          <h2 class="text-center mt-4 mb-2">Eventos do dia</h2>
-          <v-card v-for="(item, i) in items" :key="i" color="grey lighten-4">
-            <div class="d-flex flex-no-wrap">
-              <div class="d-flex flex-column justify-center align-center">
-                <v-card-title class="text-h5" v-text="item.hourStart"></v-card-title>
-                <v-card-subtitle v-text="item.hourEnd"></v-card-subtitle>
-              </div>
-
-              <div class="d-flex flex-column justify-center align-center flex-grow-1">
-                <v-card-text class="card-text-event">
-                  <div class="d-flex flex-column mx-auto">
-                    <h3>{{ item.title }}</h3>
-
-                    <div class="d-flex align-end mt-2" v-if="item.location">
-                      <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
-                      <span class="info-event-text"> {{ item.location }} </span>
-                    </div>
-
-                    <div class="d-flex align-end mt-2" v-if="item.responsible">
-                      <v-icon class="mr-1">mdi-account-outline</v-icon>
-                      <span class="info-event-text"> {{ item.responsible }} </span>
-                    </div>
-                  </div>
-                </v-card-text>
-              </div>
-
-              <div class="d-none d-sm-flex flex-column justify-center align-center pa-3">
-                <h2>{{ item.period }}</h2>
-              </div>
-            </div>
-          </v-card>
-        </main>
-      </v-col>
-    </v-row>
-  </v-container>
+      <MidiasComponent />
+    </main>
+  </div>
 </template>
 
 <script>
-import { dateFormatted, hourFormatted } from '@/utils/formatDates';
-import { events } from '@/store/events/sabado';
+import MidiasComponent from '@/components/MidiasComponent.vue';
+import VideoComponent from '@/components/VideoComponent.vue';
 
 export default {
   name: 'Home',
 
   data() {
     return {
-      hours: hourFormatted(),
-      today: dateFormatted(),
-      items: events,
-      currentEvent: events.filter(e => e.selected)[0],
+      windowWidth: window.innerWidth,
     };
+  },
+
+  components: { MidiasComponent, VideoComponent },
+
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    });
+  },
+
+  beforeDestroy() {
+    window.removeEventListener('resize', this.onResize);
+  },
+
+  methods: {
+    onResize() {
+      this.windowWidth = window.innerWidth;
+    },
   },
 };
 </script>
 
 <style lang="scss">
-.span-date-time {
-  line-height: 100%;
-  color: #000;
-  font-size: 18px;
-}
+.home-acamp {
+  position: relative;
+  max-width: 1440px;
+  width: 100%;
 
-.card-text-event {
-  border-right: 1px solid #e0e0e0;
-  border-left: 1px solid #e0e0e0;
+  .img-banner {
+    position: absolute;
+    top: 0;
+  }
 
-  > div {
-    width: fit-content;
+  .title-page {
+    z-index: 1;
+    color: #fff;
+    padding: 7.125rem;
+    padding-bottom: 0;
+  }
+
+  .text-info {
+    &.text-1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      line-height: 105%;
+      opacity: 0.75;
+      letter-spacing: 0.15em;
+    }
+
+    &.text-2 {
+      font-size: 3.75rem;
+      line-height: 110%;
+      letter-spacing: -0.03em;
+    }
+
+    &.text-3 {
+      font-weight: 500;
+      opacity: 0.9;
+      max-width: 300px;
+    }
   }
 }
 
-.info-event-text {
-  font-size: 16px;
-  line-height: 18px;
-}
+@media only screen and (max-width: 720px) {
+  .home-acamp {
+    .title-page {
+      padding: 1.5rem;
+      padding-bottom: 0;
+    }
 
-.label-current-event {
-  margin-bottom: 8px;
-  width: fit-content;
+    .text-info {
+      &.text-1 {
+        font-size: 12px;
+        opacity: 0.75;
+        text-align: center;
+      }
+
+      &.text-2 {
+        font-size: 20px;
+        text-align: center;
+      }
+
+      &.text-3 {
+        font-size: 10px;
+        max-width: 195px;
+        margin: 0 auto;
+        text-align: center;
+      }
+    }
+  }
 }
 </style>

@@ -14,6 +14,14 @@ const routes = [
     },
   },
   {
+    path: '/events',
+    name: 'event',
+    component: () => import('../views/Event.vue'),
+    meta: {
+      title: 'Eventos',
+    },
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('../views/About.vue'),

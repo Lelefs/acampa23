@@ -11,7 +11,7 @@ const opts = {
     },
     themes: {
       light: {
-        background: '#E3F2FD',
+        // background: '#E3F2FD',
       },
     },
   },
