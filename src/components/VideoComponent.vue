@@ -4,7 +4,7 @@
       title="Acampamento 2023 - EU SOU"
       width="500"
       height="350"
-      src="https://www.youtube.com/embed/-X2qHYfNjh4?autoplay=0"
+      src="https://www.youtube.com/embed/P_0D1ckuK4E"
       frameBorder="0"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
       allowFullScreen
