@@ -5,6 +5,10 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 
+import './boot/snackbar';
+import './boot/vmask';
+import './boot/vuelidate';
+
 Vue.config.productionTip = false;
 
 new Vue({

@@ -29,6 +29,14 @@ const routes = [
       title: 'Sobre',
     },
   },
+  {
+    path: '/payment',
+    name: 'payment',
+    component: () => import('../views/Payment.vue'),
+    meta: {
+      title: 'Pagamentos',
+    },
+  },
 ];
 
 const router = new VueRouter({
