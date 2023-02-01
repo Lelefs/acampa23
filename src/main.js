@@ -5,6 +5,7 @@ import './registerServiceWorker';
 import router from './router';
 import store from './store';
 
+import './boot/axios';
 import './boot/snackbar';
 import './boot/vmask';
 import './boot/vuelidate';

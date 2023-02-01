@@ -1,24 +1,37 @@
-# acampa
+# Acampa 23 - Comunidade da graça SBC
 
-## Project setup
-```
-npm install
-```
+Aplicação web para centralizar todas as informações do acampa 2023
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## 💻️ Tecnologias
 
-### Compiles and minifies for production
-```
-npm run build
-```
+[![ESLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
+[![Javascript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)](https://www.javascript.com/)
+[![Prettier](https://img.shields.io/badge/prettier-1A2C34?style=for-the-badge&logo=prettier&logoColor=F7BA3E)](https://prettier.io/)
+[![Vue](https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)](https://vuejs.org/)
+[![Vuetify](https://img.shields.io/badge/Vuetify-1867C0?style=for-the-badge&logo=vuetify&logoColor=white)](https://vuetifyjs.com/en/)
 
-### Lints and fixes files
-```
-npm run lint
-```
+## 🚀 Rodar a aplicação
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+- Instale as dependências:
+
+  ```bash
+    npm install
+  ```
+
+- Rode o projeto em ambiente de desenvolvimento:
+
+  ```bash
+    npm run serve
+  ```
+
+- Rode o build do projeto para produção:
+
+  ```bash
+    npm run build
+  ```
+
+## 🖋️ Autores
+
+- **FSET**
+
+Obrigado por me visitar e bora codar!

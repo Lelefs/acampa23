@@ -1,5 +1,5 @@
 <template>
-  <v-container class="payment-page">
+  <v-container class="payment-page my-auto">
     <v-row>
       <v-col cols="12" class="d-flex justify-center flex-column align-center">
         <h1>Novo pagamento</h1>
@@ -12,24 +12,17 @@
               :loading="loadingUser"
               :search-input.sync="search"
               :class="{ 'input-error': $v.select.$error }"
+              item-text="nome"
+              item-value="id"
               clearable
               cache-items
               hide-details
-              hide-no-data
-              label="Selecione o acampante *"
+              no-data-text="Nenhum usuário encontrado"
+              label="Nome *"
+              placeholder="Selecione o acampante"
+              @input="onInput"
             ></v-autocomplete>
             <span v-if="$v.select.$error" class="payment__error-message">Campo obrigatório</span>
-          </div>
-
-          <div>
-            <v-text-field
-              v-model.trim="form.document"
-              :class="{ 'input-error': $v.form.document.$error }"
-              label="RG *"
-              hide-details
-              :v="$v"
-            />
-            <span v-if="$v.form.document.$error" class="payment__error-message">Campo obrigatório</span>
           </div>
 
           <div class="payment__div-inputs d-flex justify-space-between align-start">
@@ -37,7 +30,8 @@
               <v-text-field
                 v-model="form.value"
                 :class="{ 'input-error': $v.form.value.$error }"
-                label="Valor"
+                label="Valor *"
+                placeholder="Informe o valor a ser pago"
                 v-mask="'R$ ###,##'"
                 hide-details
                 :v="$v"
@@ -45,12 +39,32 @@
               <span v-if="$v.form.value.$error" class="payment__error-message">Campo obrigatório</span>
             </div>
 
-            <v-select v-model="form.origin" :items="originsOptions" label="Origem" hide-details dense></v-select>
+            <div>
+              <v-select
+                v-model="form.origin"
+                :items="originsOptions"
+                :class="{ 'input-error': $v.form.origin.$error }"
+                item-text="label"
+                item-value="id"
+                label="Origem *"
+                placeholder="Informe a forma de pagamento"
+                hide-details
+                dense
+              ></v-select>
+              <span v-if="$v.form.origin.$error" class="payment__error-message">Campo obrigatório</span>
+            </div>
           </div>
 
-          <v-text-field v-model="form.observation" label="Observação" hide-details />
+          <v-text-field
+            v-model="form.observation"
+            label="Observação"
+            placeholder="Informe alguma observação se necessário"
+            hide-details
+          />
 
-          <v-btn color="success" :disabled="$v.$invalid" class="mt-4" type="submit">Enviar</v-btn>
+          <v-btn color="success" :disabled="$v.$invalid" :loading="loadingForm" class="mt-4" type="submit"
+            >Enviar</v-btn
+          >
         </v-form>
       </v-col>
     </v-row>
@@ -64,35 +78,35 @@ export default {
   name: 'Payment',
 
   data: () => ({
-    items: [],
-    loadingUser: false,
-    search: null,
-    name: '',
-    select: null,
-    users: ['Jefferson', 'Brunna', 'Carolina', 'Leandro', 'Daniel'],
-    originsOptions: ['Cantina', 'Cheque', 'Crédito', 'Débito', 'Lava rápido', 'Mensal', 'Oferta', 'Outros', 'Pix'],
     form: {
-      document: '',
       id: '',
-      name: null,
       observation: '',
       origin: '',
       value: '',
     },
-
-    v: {
-      default: null,
-      type: [Object, null],
-    },
+    items: [],
+    loadingUser: false,
+    loadingForm: false,
+    originsOptions: [
+      { id: 0, label: 'Cantina' },
+      { id: 1, label: 'Cheque' },
+      { id: 2, label: 'Crédito' },
+      { id: 3, label: 'Débito' },
+      { id: 4, label: 'Dinheiro' },
+      { id: 5, label: 'Lava rápido' },
+      { id: 6, label: 'Oferta' },
+      { id: 7, label: 'Outros' },
+      { id: 8, label: 'Pix' },
+    ],
+    search: null,
+    select: null,
+    timerId: null,
   }),
 
   validations: {
     select: { required },
     form: {
-      document: {
-        required,
-        minLength: minLength(4),
-      },
+      origin: { required },
       value: {
         required,
         minLength: minLength(4),
@@ -109,23 +123,74 @@ export default {
         return;
       }
 
-      console.log(JSON.parse(JSON.stringify(this.form)));
-      // fdfdfd
+      this.loadingForm = true;
+      const currentValue = parseFloat(this.form.value.split('R$ ')[1].replace(',', '.'));
+
+      this.$axios
+        .post('/movimentacao', {
+          idPessoa: this.form.id,
+          observacao: this.form.observation,
+          origem: this.form.origin,
+          valor: currentValue,
+        })
+        .then(
+          res => {
+            this.resetValues();
+            this.loadingForm = false;
+            this.$snackbar({ message: 'Pagamento feito com sucesso', color: 'success' });
+          },
+          error => {
+            this.loadingForm = false;
+            this.$snackbar({ message: 'Erro ao realizar o pagamento', color: 'error' });
+          },
+        );
     },
 
     querySelections(v) {
       this.loadingUser = true;
+      this.items = [];
+      clearTimeout(this.timerId);
 
-      setTimeout(() => {
-        this.items = this.users.filter(e => (e || '').toLowerCase().indexOf((v || '').toLowerCase()) > -1);
-        this.loadingUser = false;
-      }, 500);
+      this.timerId = setTimeout(() => {
+        if (this.search === '') {
+          this.loadingUser = false;
+          return;
+        }
+
+        this.$axios.get('/pessoa', { params: { Nome: this.search } }).then(
+          res => {
+            this.loadingUser = false;
+            this.items = res.data;
+          },
+          error => {
+            this.loadingUser = false;
+            this.$snackbar({ message: 'Não foi possível encontrar um usuário', color: 'error' });
+          },
+        );
+      }, 400);
+    },
+
+    onInput(value) {
+      this.form.id = value;
+    },
+
+    resetValues() {
+      this.form = {
+        id: '',
+        observation: '',
+        origin: '',
+        value: '',
+      };
+      this.items = [];
+      this.search = null;
+      this.select = null;
+      this.timerId = null;
     },
   },
 
   watch: {
     search(val) {
-      if (val && val !== this.select) this.querySelections(val);
+      if (val && val !== this.select && val !== '') this.querySelections(val);
     },
   },
 };
@@ -148,6 +213,14 @@ export default {
 
   > div {
     width: 50%;
+  }
+
+  @media only screen and (max-width: 720px) {
+    flex-direction: column;
+
+    > div {
+      width: 100%;
+    }
   }
 }
 
