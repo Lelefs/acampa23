@@ -1,4 +1,4 @@
-export const eventosSabado = [
+export const eventosDomingo = [
   {
     title: 'Café da manhã',
     hourStart: '08:00',
@@ -7,12 +7,12 @@ export const eventosSabado = [
     location: 'Restaurante',
   },
   {
-    title: 'Abertura',
+    title: 'Fogo no pavio',
     hourStart: '09:40',
     hourEnd: '09:45',
     period: 'Manhã',
     location: 'Nave',
-    responsible: 'Vídeo boas vindas',
+    responsible: 'TBD',
   },
   {
     title: 'Louvor',
@@ -28,7 +28,7 @@ export const eventosSabado = [
     hourEnd: '12:00',
     period: 'Manhã',
     location: 'Nave',
-    responsible: 'Pra. Dayane',
+    responsible: 'Pr. Marcos',
   },
   {
     title: 'Almoço',
@@ -59,19 +59,35 @@ export const eventosSabado = [
     responsible: 'TBD',
   },
   {
-    title: 'Louvor',
+    title: 'Noite temática',
     hourStart: '20:45',
-    hourEnd: '21:15',
+    hourEnd: '22:00',
     period: 'Noite',
     location: 'Nave',
-    responsible: 'Ministério louvor',
+    responsible: 'Diego Ayoagi',
   },
   {
-    title: 'Ministração',
-    hourStart: '21:15',
-    hourEnd: '23:00',
+    title: 'Teatro',
+    hourStart: '22:00',
+    hourEnd: '22:20',
     period: 'Noite',
     location: 'Nave',
     responsible: 'Pr. Dudu',
+  },
+  {
+    title: 'Dança',
+    hourStart: '22:20',
+    hourEnd: '22:30',
+    period: 'Noite',
+    location: 'Nave',
+    responsible: 'Pr. Dudu',
+  },
+  {
+    title: 'Vigília',
+    hourStart: '22:30',
+    hourEnd: '23:59',
+    period: 'Noite',
+    location: 'Nave',
+    responsible: 'Maite',
   },
 ];

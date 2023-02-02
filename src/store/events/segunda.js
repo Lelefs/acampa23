@@ -1,4 +1,4 @@
-export const eventosSabado = [
+export const eventosSegunda = [
   {
     title: 'Café da manhã',
     hourStart: '08:00',
@@ -7,28 +7,10 @@ export const eventosSabado = [
     location: 'Restaurante',
   },
   {
-    title: 'Abertura',
+    title: 'LIVRE',
     hourStart: '09:40',
-    hourEnd: '09:45',
-    period: 'Manhã',
-    location: 'Nave',
-    responsible: 'Vídeo boas vindas',
-  },
-  {
-    title: 'Louvor',
-    hourStart: '09:45',
-    hourEnd: '10:15',
-    period: 'Manhã',
-    location: 'Nave',
-    responsible: 'Ministério louvor',
-  },
-  {
-    title: 'Ministração',
-    hourStart: '10:15',
     hourEnd: '12:00',
     period: 'Manhã',
-    location: 'Nave',
-    responsible: 'Pra. Dayane',
   },
   {
     title: 'Almoço',
@@ -40,6 +22,20 @@ export const eventosSabado = [
   {
     title: 'LIVRE',
     hourStart: '13:30',
+    hourEnd: '15:00',
+    period: 'Tarde',
+  },
+  {
+    title: 'Workshop evangelismo',
+    hourStart: '15:00',
+    hourEnd: '17:00',
+    period: 'Tarde',
+    location: 'Nave',
+    responsible: 'Filipinho',
+  },
+  {
+    title: 'LIVRE',
+    hourStart: '17:00',
     hourEnd: '19:00',
     period: 'Tarde',
   },
@@ -72,6 +68,6 @@ export const eventosSabado = [
     hourEnd: '23:00',
     period: 'Noite',
     location: 'Nave',
-    responsible: 'Pr. Dudu',
+    responsible: 'Filipinho',
   },
 ];
