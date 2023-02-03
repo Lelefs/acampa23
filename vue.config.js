@@ -1,7 +1,7 @@
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-  publicPath: '/acampa23/',
+  publicPath: '/',
   transpileDependencies: true,
   pwa: {
     name: 'MAG SBC - Acampa 2023',
