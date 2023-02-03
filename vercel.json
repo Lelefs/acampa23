@@ -1,7 +1,0 @@
-{
-  "redirects": [
-    { "source": "/", "destination": "/index.html" },
-    { "source": "/pagamento", "destination": "/payment.html" },
-    { "source": "/eventos", "destination": "/event.html" }
-  ]
-}
