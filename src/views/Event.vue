@@ -23,37 +23,7 @@
     <v-row>
       <v-col cols="12">
         <main class="white d-flex flex-column pa-4 gap-16 rounded-lg rounded-b-0">
-          <h1 v-if="futureEvents.length" class="text-center">AGORA</h1>
-          <v-card v-if="futureEvents.length" color="grey lighten-4" elevation="5">
-            <div class="d-flex flex-no-wrap">
-              <div class="d-flex flex-column justify-center align-center">
-                <v-card-title class="text-h5" v-text="futureEvents[0].hourStart"></v-card-title>
-                <v-card-subtitle v-text="futureEvents[0].hourEnd"></v-card-subtitle>
-              </div>
-
-              <div class="d-flex flex-column justify-center align-center flex-grow-1">
-                <v-card-text class="card-text-event">
-                  <div class="d-flex flex-column mx-auto">
-                    <h3>{{ futureEvents[0].title }}</h3>
-
-                    <div class="d-flex align-end mt-2" v-if="futureEvents[0].location">
-                      <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
-                      <span class="info-event-text"> {{ futureEvents[0].location }} </span>
-                    </div>
-
-                    <div class="d-flex align-end mt-2" v-if="futureEvents[0].responsible">
-                      <v-icon class="mr-1">mdi-account-outline</v-icon>
-                      <span class="info-event-text"> {{ futureEvents[0].responsible }} </span>
-                    </div>
-                  </div>
-                </v-card-text>
-              </div>
-
-              <div class="d-none d-sm-flex flex-column justify-center align-center pa-3">
-                <h2>{{ futureEvents[0].period }}</h2>
-              </div>
-            </div>
-          </v-card>
+          <CurrentEvent v-if="futureEvents.length" :currentEvent="futureEvents[0]" />
 
           <h2 class="text-center mt-4 mb-2">Eventos do dia</h2>
           <v-card v-for="(item, i) in items" :key="i" color="grey lighten-4">
@@ -101,6 +71,10 @@ import { eventosTerca } from '@/store/events/terca';
 
 export default {
   name: 'Event',
+
+  components: {
+    CurrentEvent: () => import('@/components/CurrentEvent'),
+  },
 
   data() {
     return {
@@ -215,5 +189,14 @@ export default {
 .label-current-event {
   margin-bottom: 8px;
   width: fit-content;
+}
+
+.dialog-img {
+  max-height: calc(100vh - 64px);
+  margin: auto;
+
+  @media only screen and (max-width: 959px) {
+    max-height: calc(100vh - 56px);
+  }
 }
 </style>

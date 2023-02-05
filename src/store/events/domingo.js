@@ -40,6 +40,20 @@ export const eventosDomingo = [
   {
     title: 'LIVRE',
     hourStart: '13:30',
+    hourEnd: '15:00',
+    period: 'Tarde',
+  },
+  {
+    title: 'Campeonato Futebol e vôlei',
+    hourStart: '15:00',
+    hourEnd: '17:00',
+    period: 'Tarde',
+    location: 'Ginásio poliesportivo',
+    responsible: 'Matheus Finochio',
+  },
+  {
+    title: 'LIVRE',
+    hourStart: '17:00',
     hourEnd: '19:00',
     period: 'Tarde',
   },

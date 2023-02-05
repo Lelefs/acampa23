@@ -1,7 +1,12 @@
 const { defineConfig } = require('@vue/cli-service');
 
 module.exports = defineConfig({
-  publicPath: process.env.NODE_ENV === 'production' ? '' : '',
+  devServer: {
+    port: process.env.PORT || 8080,
+  },
+
+  transpileDependencies: ['vuetify'],
+
   pwa: {
     name: 'MAG SBC - Acampa 2023',
     short_name: 'MAG SBC',

@@ -42,5 +42,6 @@ export const eventosTerca = [
     hourStart: '13:30',
     hourEnd: '15:00',
     period: 'Tarde',
+    location: 'Estacionamento',
   },
 ];
