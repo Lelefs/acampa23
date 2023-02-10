@@ -1,24 +1,9 @@
-const { defineConfig } = require('@vue/cli-service');
+const dotenv = require('dotenv');
 
-module.exports = defineConfig({
+dotenv.config();
+
+module.exports = {
   devServer: {
     port: process.env.PORT || 8080,
   },
-
-  transpileDependencies: ['vuetify'],
-
-  pwa: {
-    name: 'MAG SBC - Acampa 2023',
-    short_name: 'MAG SBC',
-    theme_color: '#000',
-    background_color: '#000',
-    msTileColor: '#fff',
-    manifestOptions: {
-      name: 'MAG SBC - Acampa 2023',
-      short_name: 'MAG SBC',
-      theme_color: '#000',
-      background_color: '#000',
-      msTileColor: '#fff',
-    },
-  },
-});
+};
