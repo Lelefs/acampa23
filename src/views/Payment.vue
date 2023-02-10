@@ -55,16 +55,9 @@
             </div>
           </div>
 
-          <v-text-field
-            v-model="form.observation"
-            label="Observação"
-            placeholder="Informe alguma observação se necessário"
-            hide-details
-          />
+          <v-text-field v-model="form.observation" label="Observação" placeholder="Informe alguma observação se necessário" hide-details />
 
-          <v-btn color="success" :disabled="$v.$invalid" :loading="loadingForm" class="mt-4" type="submit"
-            >Enviar</v-btn
-          >
+          <v-btn color="success" :disabled="$v.$invalid" :loading="loadingForm" class="mt-4" type="submit">Enviar</v-btn>
         </v-form>
       </v-col>
     </v-row>
@@ -73,6 +66,7 @@
 
 <script>
 import { minLength, required } from 'vuelidate/lib/validators';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Payment',
@@ -102,6 +96,10 @@ export default {
     select: null,
     timerId: null,
   }),
+
+  computed: {
+    ...mapGetters('users', ['users']),
+  },
 
   validations: {
     select: { required },

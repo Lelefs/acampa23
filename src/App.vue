@@ -31,8 +31,4 @@ export default {
 
 <style lang="scss">
 @import './css/base.scss';
-
-.main-app {
-  background-color: #e3f2fd;
-}
 </style>

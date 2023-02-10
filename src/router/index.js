@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
-import PaymentView from '../views/Payment.vue';
 
 Vue.use(VueRouter);
 
@@ -16,7 +15,7 @@ const routes = [
   },
   {
     path: '/events',
-    name: 'event',
+    name: 'events',
     component: () => import('../views/Event.vue'),
     meta: {
       title: 'Eventos',
@@ -33,7 +32,7 @@ const routes = [
   {
     path: '/payment',
     name: 'payment',
-    component: PaymentView,
+    component: () => import('../views/Payment.vue'),
     meta: {
       title: 'Pagamentos',
     },

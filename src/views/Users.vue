@@ -5,13 +5,7 @@
       <v-spacer></v-spacer>
       <v-text-field v-model="search" append-icon="mdi-magnify" label="Search" single-line hide-details></v-text-field>
     </v-card-title>
-    <v-data-table
-      :headers="headers"
-      :items="usersFormatted"
-      :search="search"
-      disable-pagination
-      hide-default-footer
-    ></v-data-table>
+    <v-data-table :headers="headers" :items="usersFormatted" :search="search" disable-pagination hide-default-footer></v-data-table>
   </v-card>
 </template>
 
@@ -25,6 +19,7 @@ export default {
     search: '',
     headers: [
       { text: 'Nome', align: 'start', value: 'nome' },
+      { text: 'documento', align: 'start', value: 'documento' },
       { text: 'Célula', align: 'start', value: 'nomeCelula' },
       { text: 'Valor pago', align: 'start', value: 'valorPago' },
       { text: 'Quarto', align: 'start', value: 'quarto' },
@@ -38,6 +33,8 @@ export default {
     usersFormatted() {
       return this.users.map(u => ({
         ...u,
+        nome: u.nome.toLowerCase().replace(/^[a-z]/i, str => str.toUpperCase()),
+        nomeCelula: u.nomeCelula.toLowerCase().replace(/^[a-z]/i, str => str.toUpperCase()),
         valorPago: Number(u.valor).toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
       }));
     },
