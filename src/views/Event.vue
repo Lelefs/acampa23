@@ -36,14 +36,14 @@
               <div class="d-flex flex-column justify-center align-center flex-grow-1">
                 <v-card-text class="card-text-event">
                   <div class="d-flex flex-column mx-auto">
-                    <h3>{{ item.title }}</h3>
+                    <h3 class="text-center">{{ item.title }}</h3>
 
-                    <div class="d-flex align-end mt-2" v-if="item.location">
+                    <div class="d-flex align-end justify-center mt-2" v-if="item.location">
                       <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
                       <span class="info-event-text"> {{ item.location }} </span>
                     </div>
 
-                    <div class="d-flex align-end mt-2" v-if="item.responsible">
+                    <div class="d-flex align-end justify-center mt-2" v-if="item.responsible">
                       <v-icon class="mr-1">mdi-account-outline</v-icon>
                       <span class="info-event-text"> {{ item.responsible }} </span>
                     </div>
@@ -64,10 +64,7 @@
 
 <script>
 import { dateFormatted, hourFormatted } from '@/utils/formatDates';
-import { eventosSabado } from '@/store/events/sabado';
-import { eventosDomingo } from '@/store/events/domingo';
-import { eventosSegunda } from '@/store/events/segunda';
-import { eventosTerca } from '@/store/events/terca';
+import { mapGetters } from 'vuex';
 
 export default {
   name: 'Event',
@@ -81,15 +78,12 @@ export default {
       dataAtual: '2023-02-21 10:25:00',
       hours: hourFormatted(),
       today: dateFormatted(),
-      eventsFormatted: eventosSabado.map(e => ({
-        ...e,
-        timestampStart: new Date(`2023-02-18 ${e.hourStart}`).getTime(),
-        timestampEnd: new Date(`2023-02-18 ${e.hourEnd}`).getTime(),
-      })),
     };
   },
 
   computed: {
+    ...mapGetters('events', ['events']),
+
     futureEvents() {
       const now = new Date(this.dataAtual);
       const currentDay = now.getDate();
@@ -98,28 +92,28 @@ export default {
 
       switch (currentDay) {
         case 18:
-          eventsFormatted = eventosSabado.map(e => ({
+          eventsFormatted = this.events.sabado.map(e => ({
             ...e,
             timestampStart: new Date(`2023-02-18 ${e.hourStart}`).getTime(),
             timestampEnd: new Date(`2023-02-18 ${e.hourEnd}`).getTime(),
           }));
           break;
         case 19:
-          eventsFormatted = eventosDomingo.map(e => ({
+          eventsFormatted = this.events.domingo.map(e => ({
             ...e,
             timestampStart: new Date(`2023-02-19 ${e.hourStart}`).getTime(),
             timestampEnd: new Date(`2023-02-19 ${e.hourEnd}`).getTime(),
           }));
           break;
         case 20:
-          eventsFormatted = eventosSegunda.map(e => ({
+          eventsFormatted = this.events.segunda.map(e => ({
             ...e,
             timestampStart: new Date(`2023-02-20 ${e.hourStart}`).getTime(),
             timestampEnd: new Date(`2023-02-20 ${e.hourEnd}`).getTime(),
           }));
           break;
         case 21:
-          eventsFormatted = eventosTerca.map(e => ({
+          eventsFormatted = this.events.terca.map(e => ({
             ...e,
             timestampStart: new Date(`2023-02-21 ${e.hourStart}`).getTime(),
             timestampEnd: new Date(`2023-02-21 ${e.hourEnd}`).getTime(),
@@ -144,13 +138,13 @@ export default {
 
       switch (currentDay) {
         case 18:
-          return eventosSabado;
+          return this.events.sabado;
         case 19:
-          return eventosDomingo;
+          return this.events.domingo;
         case 20:
-          return eventosSegunda;
+          return this.events.segunda;
         case 21:
-          return eventosTerca;
+          return this.events.terca;
         default:
           return [
             {

@@ -11,14 +11,14 @@
         <div class="d-flex flex-column justify-center align-center flex-grow-1">
           <v-card-text class="card-text-event">
             <div class="d-flex flex-column mx-auto">
-              <h3>{{ currentEvent.title }}</h3>
+              <h3 class="text-center">{{ currentEvent.title }}</h3>
 
-              <div class="d-flex align-end mt-2" v-if="currentEvent.location">
+              <div class="d-flex align-end justify-center mt-2" v-if="currentEvent.location">
                 <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
                 <span class="info-event-text"> {{ currentEvent.location }} </span>
               </div>
 
-              <div class="d-flex align-end mt-2" v-if="currentEvent.responsible">
+              <div class="d-flex align-end justify-center mt-2" v-if="currentEvent.responsible">
                 <v-icon class="mr-1">mdi-account-outline</v-icon>
                 <span class="info-event-text"> {{ currentEvent.responsible }} </span>
               </div>

@@ -12,7 +12,7 @@ module.exports = {
     'import/extensions': 0,
     'import/no-unresolved': 0,
     'import/prefer-default-export': 0,
-    'max-len': ['error', { code: 120 }],
+    'max-len': ['error', { code: 140 }],
     'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
     'no-alert': 0,
