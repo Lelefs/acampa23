@@ -16,15 +16,15 @@ export default {
   name: 'About',
 
   data: () => ({
-    search: '',
     headers: [
       { text: 'Nome', align: 'start', value: 'nome' },
-      { text: 'documento', align: 'start', value: 'documento' },
+      { text: 'Documento', align: 'start', value: 'documento' },
       { text: 'Célula', align: 'start', value: 'nomeCelula' },
       { text: 'Valor pago', align: 'start', value: 'valorPago' },
       { text: 'Quarto', align: 'start', value: 'quarto' },
       { text: 'Ônibus', align: 'start', value: 'onibus' },
     ],
+    search: '',
   }),
 
   computed: {

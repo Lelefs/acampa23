@@ -1,10 +1,10 @@
 <template>
   <v-container class="payment-page my-auto">
     <v-row>
-      <v-col cols="12" class="d-flex justify-center flex-column align-center">
+      <v-col cols="12" :md="userMovimentations.length ? 6 : 12" class="d-flex justify-center flex-column align-center">
         <h1>Novo pagamento</h1>
 
-        <v-form :form="form" class="payment__form mt-6 d-flex flex-column" @submit.prevent="submit">
+        <v-form :form="form" ref="form" class="payment__form mt-6 d-flex flex-column" @submit.prevent="submit">
           <div>
             <v-autocomplete
               v-model="select"
@@ -60,6 +60,29 @@
           <v-btn color="success" :disabled="$v.$invalid" :loading="loadingForm" class="mt-4" type="submit">Enviar</v-btn>
         </v-form>
       </v-col>
+
+      <v-col v-if="userMovimentations.length" cols="12" md="6">
+        <v-simple-table>
+          <template v-slot:default>
+            <thead>
+              <tr>
+                <th class="text-left">Data</th>
+                <th class="text-left">Valor</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(item, index) in userMovimentations" :key="index">
+                <td>{{ item.date }}</td>
+                <td>{{ item.value }}</td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>{{ total }}</td>
+              </tr>
+            </tbody>
+          </template>
+        </v-simple-table>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -81,6 +104,7 @@ export default {
     items: [],
     loadingUser: false,
     loadingForm: false,
+    loadingMovimentation: false,
     originsOptions: [
       { id: 0, label: 'Cantina' },
       { id: 1, label: 'Cheque' },
@@ -95,6 +119,9 @@ export default {
     search: null,
     select: null,
     timerId: null,
+    total: 'R$ 0,00',
+    userMovimentations: [],
+    userSelected: false,
   }),
 
   computed: {
@@ -135,6 +162,7 @@ export default {
           res => {
             this.resetValues();
             this.loadingForm = false;
+            this.userMovimentations = [];
             this.$snackbar({ message: 'Pagamento feito com sucesso', color: 'success' });
           },
           error => {
@@ -169,16 +197,41 @@ export default {
     },
 
     onInput(value) {
-      this.form.id = value;
+      this.userSelected = true;
+      const user = this.items.filter(u => u.id === value)[0];
+      this.userMovimentations = [];
+
+      if (user) {
+        this.form.observation = '';
+        this.form.origin = '';
+        this.form.value = '';
+        this.loadingMovimentation = true;
+        this.total = 0;
+
+        this.$axios.get('/movimentacao').then(
+          res => {
+            this.loadingMovimentation = false;
+            this.userMovimentations = res.data.map(m => {
+              this.total += m.valor;
+              return {
+                date: m.datamovimentacao.split('T')[0].split('-').reverse().join('/'),
+                value: m.valor.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }),
+              };
+            });
+            this.total = this.total.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' });
+          },
+          error => {
+            this.loadingMovimentation = false;
+            this.$snackbar({ message: 'Nenhuma movimentação encontrada', color: 'error' });
+          },
+        );
+
+        this.form.id = user.id;
+      }
     },
 
     resetValues() {
-      this.form = {
-        id: '',
-        observation: '',
-        origin: '',
-        value: '',
-      };
+      this.$refs.form.reset();
       this.items = [];
       this.search = null;
       this.select = null;
@@ -188,6 +241,10 @@ export default {
 
   watch: {
     search(val) {
+      if (this.userSelected) {
+        this.userSelected = false;
+        return;
+      }
       if (val && val !== this.select && val !== '') this.querySelections(val);
     },
   },
