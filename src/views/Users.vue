@@ -20,7 +20,6 @@ export default {
       { text: 'Nome', align: 'start', value: 'nome' },
       { text: 'Documento', align: 'start', value: 'documento' },
       { text: 'Célula', align: 'start', value: 'nomeCelula' },
-      { text: 'Valor pago', align: 'start', value: 'valorPago' },
       { text: 'Quarto', align: 'start', value: 'quarto' },
       { text: 'Ônibus', align: 'start', value: 'onibus' },
     ],
