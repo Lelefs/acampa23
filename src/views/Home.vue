@@ -81,7 +81,7 @@ export default {
 
   data() {
     return {
-      dialog: true,
+      dialog: false,
       windowWidth: window.innerWidth,
     };
   },
