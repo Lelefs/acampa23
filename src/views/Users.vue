@@ -1,5 +1,29 @@
 <template>
   <v-card max-width="650" class="mx-auto">
+    <v-row>
+      <v-col class="d-flex justify-center">
+        <v-dialog v-model="dialog" fullscreen hide-overlay transition="dialog-bottom-transition">
+          <template v-slot:activator="{ on, attrs }">
+            <v-btn color="green mt-6 mb-3 mx-auto" dark v-bind="attrs" v-on="on"> MAPA DO LOCAL </v-btn>
+          </template>
+
+          <v-card>
+            <v-toolbar dark color="green">
+              <v-toolbar-title>Localização</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn icon dark @click="dialog = false">
+                <v-icon>mdi-close</v-icon>
+              </v-btn>
+            </v-toolbar>
+
+            <div class="dialog-div__img">
+              <v-img src="img/locais/Mapa.png" alt="Mapa local"></v-img>
+            </div>
+          </v-card>
+        </v-dialog>
+      </v-col>
+    </v-row>
+
     <v-card-title>
       Acampantes
       <v-spacer></v-spacer>
@@ -23,6 +47,7 @@ export default {
   name: 'About',
 
   data: () => ({
+    dialog: false,
     headers: [
       { text: 'Nome', align: 'start', value: 'nome' },
       { text: 'Quarto', align: 'start', value: 'quarto' },

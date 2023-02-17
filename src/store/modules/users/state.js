@@ -7026,7 +7026,7 @@ export default {
       camiseta: '',
       valor: '',
       quarto: 'Ch. 16',
-      onibus: '',
+      onibus: 'ROSA - 20h30',
       formaPagamento: '',
       observacao: 'CONFIRMAR INFOS',
     },
