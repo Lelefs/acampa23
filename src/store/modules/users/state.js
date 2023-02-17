@@ -1857,7 +1857,7 @@ export default {
       mail: 'saareg3107@gmail.com',
       camiseta: 'G',
       valor: '800',
-      quarto: 'Ch. 14',
+      quarto: 'Ch. 17',
       onibus: 'LARANJA - 20h30',
       formaPagamento: 'Credito ( Total)',
       observacao: '',
