@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/users',
     name: 'users',
-    component: () => import('../views/Users.vue'),
+    component: () => import('../views/Event.vue'),
     meta: {
       title: 'Acampantes',
     },
@@ -32,7 +32,7 @@ const routes = [
   {
     path: '/payment',
     name: 'payment',
-    component: () => import('../views/Payment.vue'),
+    component: () => import('../views/Event.vue'),
     meta: {
       title: 'Pagamentos',
     },

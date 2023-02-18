@@ -21,6 +21,27 @@
     </v-row>
 
     <v-row>
+      <v-col cols="12 d-flex flex-column align-center">
+        <h2 class="text-center mt-4 mb-2">Monte seu time para o campeonato de Futebol e Vôlei</h2>
+        <v-btn
+          color="green mt-6 mb-3"
+          target="_blank"
+          width="250"
+          dark
+          href="https://docs.google.com/forms/d/e/1FAIpQLScBm5I09scfeftu5d2Whc3J_LywEokJUMN_xQa_yT_7QE3Xnw/viewform?usp=sf_link"
+        >
+          LINK PARA INSCRIÇÃO
+        </v-btn>
+      </v-col>
+    </v-row>
+
+    <v-row>
+      <v-col cols="12">
+        <v-divider></v-divider>
+      </v-col>
+    </v-row>
+
+    <v-row>
       <v-col cols="12">
         <main class="white d-flex flex-column pa-4 gap-16 rounded-lg rounded-b-0">
           <CurrentEvent v-if="futureEvents.length" :currentEvent="futureEvents[0]" />
@@ -75,7 +96,7 @@ export default {
 
   data() {
     return {
-      dataAtual: '2023-02-21 10:25:00',
+      dataAtual: new Date(),
       hours: hourFormatted(),
       today: dateFormatted(),
     };

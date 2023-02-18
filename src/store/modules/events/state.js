@@ -58,7 +58,7 @@ export default {
         hourEnd: '20:45',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'TBD',
+        responsible: 'Satoro',
       },
       {
         title: 'Louvor',
@@ -74,7 +74,7 @@ export default {
         hourEnd: '23:00',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'Pr. Dudu',
+        responsible: 'Pr. Marcos',
       },
     ],
 
@@ -92,7 +92,7 @@ export default {
         hourEnd: '09:45',
         period: 'Manhã',
         location: 'Nave',
-        responsible: 'TBD',
+        responsible: 'Larissa Menezes',
       },
       {
         title: 'Louvor',
@@ -108,7 +108,7 @@ export default {
         hourEnd: '12:00',
         period: 'Manhã',
         location: 'Nave',
-        responsible: 'Pr. Marcos',
+        responsible: 'Israel',
       },
       {
         title: 'Almoço',
@@ -145,16 +145,8 @@ export default {
         location: 'Restaurante',
       },
       {
-        title: 'Fogo no pavio',
-        hourStart: '20:40',
-        hourEnd: '20:45',
-        period: 'Noite',
-        location: 'Nave',
-        responsible: 'TBD',
-      },
-      {
         title: 'Noite temática',
-        hourStart: '20:45',
+        hourStart: '20:40',
         hourEnd: '22:00',
         period: 'Noite',
         location: 'Nave',
@@ -166,7 +158,6 @@ export default {
         hourEnd: '22:20',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'Pr. Dudu',
       },
       {
         title: 'Dança',
@@ -174,7 +165,6 @@ export default {
         hourEnd: '22:30',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'Pr. Dudu',
       },
       {
         title: 'Vigília',
@@ -219,7 +209,7 @@ export default {
         hourEnd: '17:00',
         period: 'Tarde',
         location: 'Nave',
-        responsible: 'Filipinho',
+        responsible: 'Filipe Matheus',
       },
       {
         title: 'LIVRE',
@@ -240,7 +230,7 @@ export default {
         hourEnd: '20:45',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'TBD',
+        responsible: 'Arthur',
       },
       {
         title: 'Louvor',
@@ -256,7 +246,7 @@ export default {
         hourEnd: '23:00',
         period: 'Noite',
         location: 'Nave',
-        responsible: 'Filipinho',
+        responsible: 'Filipe Matheus',
       },
     ],
 
@@ -274,7 +264,7 @@ export default {
         hourEnd: '09:45',
         period: 'Manhã',
         location: 'Nave',
-        responsible: 'TBD',
+        responsible: 'Kevin Marcondes',
       },
       {
         title: 'Louvor',
