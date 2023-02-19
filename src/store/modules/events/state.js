@@ -168,7 +168,8 @@ export default {
         game: 'Jogo 4',
         time1: 'Time 1',
         participantes1: ['Beatriz Luna', 'Daniele Mendonça', 'Marco Carvalho ', 'Maria Luiza Baltazar', 'Re Saso', 'Vitória Martins'],
-        time2: 'Vencedor Jogo 1',
+        time2: 'Time 7',
+        participantes2: ['Ana Caroline Andrade', 'Enzo Nery', 'Guilherme de Carvalho ', 'Hosana', 'Oséas Fernandes', 'Pedro Cruseiro'],
       },
       {
         title: 'Campeonato vôlei',
