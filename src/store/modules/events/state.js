@@ -204,7 +204,8 @@ export default {
         game: 'Jogo 7',
         time1: 'Time 4',
         participantes1: ['James', 'Khin Borges', 'Lucas Zocchio', 'Pietra', 'Tiago Cirillo', 'Vini Sena'],
-        time2: 'Vencedor Jogo 4',
+        time2: 'Time 7',
+        participantes2: ['Ana Caroline Andrade', 'Enzo Nery', 'Guilherme de Carvalho ', 'Hosana', 'Oséas Fernandes', 'Pedro Cruseiro'],
       },
       {
         title: 'Campeonato vôlei',
@@ -213,8 +214,10 @@ export default {
         period: 'Tarde',
         location: 'Ginásio poliesportivo',
         game: 'Jogo 8',
-        time1: 'Vencedor Jogo 5',
-        time2: 'Vencedor Jogo 6',
+        time1: 'Time 8',
+        participantes1: ['Dudu', 'Fabio', 'Giulia Gueicha de Oliveira', 'Isabela Alves Frazao', 'Jeff', 'Tico'],
+        time2: 'Time 10',
+        participantes2: ['Camila', 'Dani', 'Renato', 'Rodrigo ', 'Weslei ', 'Zelo'],
       },
       {
         title: 'Campeonato vôlei',
