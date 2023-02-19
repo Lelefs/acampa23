@@ -106,7 +106,8 @@ export default {
 
   data() {
     return {
-      dataAtual: '2023-02-19 14:35:00',
+      dataAtual: new Date(),
+      dataFixa: '2023-02-19 14:35:00',
       hours: hourFormatted(),
       today: dateFormatted(),
     };
