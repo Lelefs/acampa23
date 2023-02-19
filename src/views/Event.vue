@@ -21,27 +21,6 @@
     </v-row>
 
     <v-row>
-      <v-col cols="12 d-flex flex-column align-center">
-        <h2 class="text-center mt-4 mb-2">Monte seu time para o campeonato de Futebol e Vôlei</h2>
-        <v-btn
-          color="green mt-6 mb-3"
-          target="_blank"
-          width="250"
-          dark
-          href="https://docs.google.com/forms/d/e/1FAIpQLScBm5I09scfeftu5d2Whc3J_LywEokJUMN_xQa_yT_7QE3Xnw/viewform?usp=sf_link"
-        >
-          LINK PARA INSCRIÇÃO
-        </v-btn>
-      </v-col>
-    </v-row>
-
-    <v-row>
-      <v-col cols="12">
-        <v-divider></v-divider>
-      </v-col>
-    </v-row>
-
-    <v-row>
       <v-col cols="12">
         <main class="white d-flex flex-column pa-4 gap-16 rounded-lg rounded-b-0">
           <CurrentEvent v-if="futureEvents.length" :currentEvent="futureEvents[0]" />
@@ -54,27 +33,58 @@
                 <v-card-subtitle v-text="item.hourEnd"></v-card-subtitle>
               </div>
 
-              <div class="d-flex flex-column justify-center align-center flex-grow-1">
-                <v-card-text class="card-text-event">
+              <template v-if="item.title !== 'Campeonato vôlei'">
+                <div class="d-flex flex-column justify-center align-center flex-grow-1">
+                  <v-card-text class="card-text-event">
+                    <div class="d-flex flex-column mx-auto">
+                      <h3 class="text-center">{{ item.title }}</h3>
+
+                      <div class="d-flex align-end justify-center mt-2" v-if="item.location">
+                        <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
+                        <span class="info-event-text"> {{ item.location }} </span>
+                      </div>
+
+                      <div class="d-flex align-end justify-center mt-2" v-if="item.responsible">
+                        <v-icon class="mr-1">mdi-account-outline</v-icon>
+                        <span class="info-event-text"> {{ item.responsible }} </span>
+                      </div>
+                    </div>
+                  </v-card-text>
+                </div>
+
+                <div class="d-none d-sm-flex flex-column justify-center align-center pa-3">
+                  <h2>{{ item.period }}</h2>
+                </div>
+              </template>
+
+              <template v-else>
+                <v-card-text class="d-flex flex-column justify-center align-center card-text-event">
                   <div class="d-flex flex-column mx-auto">
-                    <h3 class="text-center">{{ item.title }}</h3>
+                    <h3 class="text-center">{{ item.title }} - {{ item.game }}</h3>
 
                     <div class="d-flex align-end justify-center mt-2" v-if="item.location">
                       <v-icon class="mr-1">mdi-map-marker-outline</v-icon>
                       <span class="info-event-text"> {{ item.location }} </span>
                     </div>
+                  </div>
 
-                    <div class="d-flex align-end justify-center mt-2" v-if="item.responsible">
-                      <v-icon class="mr-1">mdi-account-outline</v-icon>
-                      <span class="info-event-text"> {{ item.responsible }} </span>
+                  <div class="d-flex mx-auto div-info-times mt-2">
+                    <div class="d-flex flex-column text-center">
+                      <h4 class="my-2">{{ item.time1 }}</h4>
+                      <template v-if="item.participantes1?.length">
+                        <span v-for="(jogador, i) in item.participantes1" :key="i">{{ jogador }}</span>
+                      </template>
+                    </div>
+                    <span class="mt-2">X</span>
+                    <div class="d-flex flex-column text-center">
+                      <h4 class="my-2">{{ item.time2 }}</h4>
+                      <template v-if="item.participantes2?.length">
+                        <span v-for="(jogador, i) in item.participantes2" :key="i">{{ jogador }}</span>
+                      </template>
                     </div>
                   </div>
                 </v-card-text>
-              </div>
-
-              <div class="d-none d-sm-flex flex-column justify-center align-center pa-3">
-                <h2>{{ item.period }}</h2>
-              </div>
+              </template>
             </div>
           </v-card>
         </main>
@@ -96,7 +106,7 @@ export default {
 
   data() {
     return {
-      dataAtual: new Date(),
+      dataAtual: '2023-02-19 14:35:00',
       hours: hourFormatted(),
       today: dateFormatted(),
     };
@@ -181,6 +191,14 @@ export default {
 </script>
 
 <style lang="scss">
+.v-card__title.text-h5 {
+  min-width: 93px;
+
+  @media only screen and (max-width: 720px) {
+    min-width: 85px;
+  }
+}
+
 .span-date-time {
   line-height: 100%;
   color: #000;
@@ -212,6 +230,14 @@ export default {
 
   @media only screen and (max-width: 959px) {
     max-height: calc(100vh - 56px);
+  }
+}
+
+.div-info-times {
+  gap: 1rem;
+
+  h4 {
+    font-size: 18px;
   }
 }
 </style>
