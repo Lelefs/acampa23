@@ -192,7 +192,8 @@ export default {
         game: 'Jogo 6',
         time1: 'Time 6',
         participantes1: ['André Gustavo', 'Caio', 'Gabriel Dias', 'Gabriel popeta', 'Jaqueline', 'Murilo'],
-        time2: 'Vencedor Jogo 2',
+        time2: 'Time 10',
+        participantes2: ['Camila', 'Dani', 'Renato', 'Rodrigo ', 'Weslei ', 'Zelo'],
       },
       {
         title: 'Campeonato vôlei',
@@ -201,7 +202,8 @@ export default {
         period: 'Tarde',
         location: 'Ginásio poliesportivo',
         game: 'Jogo 7',
-        time1: 'Vencedor Jogo 3',
+        time1: 'Time 4',
+        participantes1: ['James', 'Khin Borges', 'Lucas Zocchio', 'Pietra', 'Tiago Cirillo', 'Vini Sena'],
         time2: 'Vencedor Jogo 4',
       },
       {
