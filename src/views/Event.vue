@@ -33,7 +33,7 @@
                 <v-card-subtitle v-text="item.hourEnd"></v-card-subtitle>
               </div>
 
-              <template v-if="item.title !== 'Campeonato vôlei'">
+              <template v-if="item.title !== 'Campeonato futebol' && item.title !== 'Campeonato futebol - FEMININO'">
                 <div class="d-flex flex-column justify-center align-center flex-grow-1">
                   <v-card-text class="card-text-event">
                     <div class="d-flex flex-column mx-auto">

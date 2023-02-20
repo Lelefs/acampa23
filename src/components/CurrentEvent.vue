@@ -8,7 +8,7 @@
           <v-card-subtitle v-text="currentEvent.hourEnd"></v-card-subtitle>
         </div>
 
-        <template v-if="currentEvent.title !== 'Campeonato vôlei'">
+        <template v-if="currentEvent.title !== 'Campeonato futebol' && currentEvent.title !== 'Campeonato futebol - FEMININO'">
           <div class="d-flex flex-column justify-center align-center flex-grow-1">
             <v-card-text class="card-text-event">
               <div class="d-flex flex-column mx-auto">
